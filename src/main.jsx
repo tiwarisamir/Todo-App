@@ -8,8 +8,8 @@ import Profile from "./pages/Profile.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 
-export const server = "http://localhost:5000/api/v1/";
-// export const server = "https://backend-practice-todo.onrender.com/api/v1/";
+// export const server = "http://localhost:5000/api/v1/";
+export const server = "https://backend-practice-todo.onrender.com/api/v1/";
 
 const router = createBrowserRouter([
   {
