@@ -1,15 +1,48 @@
-import React from "react";
-import Appname from "./component/Appname";
-import "./App.css";
-import Taskcontainer from "./component/Taskcontainer";
+import { Outlet } from "react-router-dom";
+import Header from "./components/Header";
+import { Toaster } from "react-hot-toast";
 
-const App = () => {
+import ContextProvider, { Context } from "./store/store";
+import { useContext, useEffect } from "react";
+import axios from "axios";
+import { server } from "./main";
+
+function App() {
+  const { setIsAuthenticated, setloading, setuser } = useContext(Context);
+
+  useEffect(() => {
+    setloading(true);
+    axios
+      .get(`${server}users/me`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setuser(res.data.user);
+        setIsAuthenticated(true);
+        setloading(false);
+      })
+      .catch((error) => {
+        setuser({});
+        setIsAuthenticated(false);
+        setloading(false);
+      });
+  }, []);
+
   return (
     <>
-      <Appname />
-      <Taskcontainer />
+      <Header />
+      <Outlet />
+      <Toaster />
     </>
   );
-};
+}
 
-export default App;
+function AppWrapper() {
+  return (
+    <ContextProvider>
+      <App />
+    </ContextProvider>
+  );
+}
+
+export default AppWrapper;
