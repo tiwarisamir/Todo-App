@@ -1,28 +1,25 @@
-import { Outlet } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import { Toaster } from "react-hot-toast";
-
-import ContextProvider, { Context } from "./store/store";
-import { useContext, useEffect } from "react";
-import axios from "axios";
-import { server } from "./main";
+import ContextProvider from "./store/store";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Outlet />
-      <Toaster />
-    </>
+    <Router>
+      <ContextProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+        <Toaster />
+      </ContextProvider>
+    </Router>
   );
 }
 
-function AppWrapper() {
-  return (
-    <ContextProvider>
-      <App />
-    </ContextProvider>
-  );
-}
-
-export default AppWrapper;
+export default App;
