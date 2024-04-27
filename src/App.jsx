@@ -8,26 +8,6 @@ import axios from "axios";
 import { server } from "./main";
 
 function App() {
-  const { setIsAuthenticated, setloading, setuser } = useContext(Context);
-
-  useEffect(() => {
-    setloading(true);
-    axios
-      .get(`${server}users/me`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setuser(res.data.user);
-        setIsAuthenticated(true);
-        setloading(false);
-      })
-      .catch((error) => {
-        setuser({});
-        setIsAuthenticated(false);
-        setloading(false);
-      });
-  }, []);
-
   return (
     <>
       <Header />

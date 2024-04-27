@@ -3,17 +3,16 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/store";
 
 const Header = () => {
-  const { isAuthenticated, loading, logout } = useContext(Context);
+  const { isAuthenticated, loading, logout, user } = useContext(Context);
 
   return (
     <nav className="header">
       <div>
         <h2>Todo App.</h2>
       </div>
-      <article>
-        <Link to={"/"}>Home</Link>
-        <Link to={"/profile"}>Profile</Link>
 
+      <article>
+        {isAuthenticated && <h5>👋 Hello, {user.name}</h5>}
         {isAuthenticated ? (
           <button disabled={loading} onClick={logout} className="btn">
             Logout

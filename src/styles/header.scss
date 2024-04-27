@@ -6,20 +6,28 @@
   padding: 0 3rem;
   width: 100%;
   > div {
+    
     h2 {
       text-transform: uppercase;
       color: $color2;
       font-weight: 400;
     }
+    
   }
+
+ 
 
   > article {
     display: flex;
     align-items: center;
     text-align: center;
+    gap: 1rem;
     > a {
       @include styledText;
       @include myButton;
+    }
+    h5{
+      color:$color2
     }
   }
 }

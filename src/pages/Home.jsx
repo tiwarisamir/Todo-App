@@ -27,7 +27,7 @@ const Home = () => {
       toast.success(data.message);
       setrefresh(!refresh);
     } catch (error) {
-      toast.success(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
   const handleDelete = async (id) => {

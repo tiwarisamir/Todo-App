@@ -18,6 +18,7 @@ const ContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setloading] = useState(false);
   const [user, setuser] = useState({});
+  const [refresh, setrefresh] = useState(false);
 
   const login = async (email, password) => {
     setloading(true);
@@ -40,6 +41,7 @@ const ContextProvider = ({ children }) => {
       toast.success(data.message);
       setIsAuthenticated(true);
       setloading(false);
+      setrefresh(!refresh);
     } catch (error) {
       toast.error(error.response.data.message);
       setIsAuthenticated(false);
@@ -64,9 +66,11 @@ const ContextProvider = ({ children }) => {
           withCredentials: true,
         }
       );
+      console.log(data);
       toast.success(data.message);
       setIsAuthenticated(true);
       setloading(false);
+      setrefresh(!refresh);
     } catch (error) {
       toast.error(error.response.data.message);
       setIsAuthenticated(false);
@@ -77,18 +81,39 @@ const ContextProvider = ({ children }) => {
   const logout = async () => {
     setloading(true);
     try {
-      await axios.get(`${server}users/logout`, {
+      const { data } = await axios.get(`${server}users/logout`, {
         withCredentials: true,
       });
-      toast.error("logged Out Successfully");
+      toast.success(data.message);
+
       setIsAuthenticated(false);
       setloading(false);
+      setrefresh(!refresh);
     } catch (error) {
-      toast.success(error.response.data.message);
+      // console.log(error);
+      toast.error(error.response.data.message);
       setIsAuthenticated(true);
       setloading(false);
     }
   };
+
+  useEffect(() => {
+    setloading(true);
+    axios
+      .get(`${server}users/me`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setuser(res.data.user);
+        setIsAuthenticated(true);
+        setloading(false);
+      })
+      .catch((error) => {
+        setuser({});
+        setIsAuthenticated(false);
+        setloading(false);
+      });
+  }, [refresh]);
 
   return (
     <Context.Provider
