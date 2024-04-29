@@ -66,7 +66,7 @@ const ContextProvider = ({ children }) => {
           withCredentials: true,
         }
       );
-      console.log(data);
+
       toast.success(data.message);
       setIsAuthenticated(true);
       setloading(false);
@@ -85,12 +85,10 @@ const ContextProvider = ({ children }) => {
         withCredentials: true,
       });
       toast.success(data.message);
-
       setIsAuthenticated(false);
       setloading(false);
       setrefresh(!refresh);
     } catch (error) {
-      // console.log(error);
       toast.error(error.response.data.message);
       setIsAuthenticated(true);
       setloading(false);

@@ -80,7 +80,7 @@ const Home = () => {
         settasks(res.data.tasks);
       })
       .catch((e) => {
-        toast.error(e.response.data.message);
+        console.log(e);
       });
   }, [refresh]);
 
