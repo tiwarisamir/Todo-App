@@ -1,8 +1,32 @@
-# React + Vite
+# TOSO APP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is frontend of Todo App
 
-Currently, two official plugins are available:
+### 🏠 [Visit Website](https://todo-app-omega-navy.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stacks
+
+- **Frontend Technologies:**
+
+  - `ReactJS`
+  - `axios`
+  - `react-router-dom`
+  - `react-hot-toast`
+  - `sass`
+
+- **Deployment and Hosting:**
+
+  - `Vercel`
+
+## Author
+
+🙎‍♂️ **Samir Tiwari @tiwarisamir**
+
+- Website: https://samirt.com.np
+- Twitter: [@samir11_tiwari](https://twitter.com/samir11_tiwari)
+
+- LinkedIn: [@samirtiwari2061](https://linkedin.com/in/samirtiwari2061)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
